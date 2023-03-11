@@ -6,6 +6,8 @@ const helmet = require('helmet');
 const SocketServer = require('./socketServer');
 const routes = require('./routes');
 const db = require('./models');
+const cookieParser = require('cookie-parser');
+
 dotenv.config();
 
 const app = express();
@@ -15,6 +17,7 @@ app.use(
 	})
 );
 app.use(express.json());
+app.use(cookieParser());
 app.use(
 	helmet.hsts({
 		maxAge: 36000000,
