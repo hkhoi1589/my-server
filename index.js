@@ -6,15 +6,13 @@ const helmet = require('helmet');
 const SocketServer = require('./socketServer');
 const routes = require('./routes');
 const db = require('./models');
-const cookieParser = require('cookie-parser');
 
 dotenv.config();
 
 const app = express();
 app.use(
 	cors({
-		credentials: true,
-		origin: 'http://localhost:3000',
+		origin: '*',
 	})
 );
 app.use(express.json());
@@ -31,8 +29,7 @@ const server = http.createServer(app); // https server
 const { Server } = require('socket.io');
 const io = new Server(server, {
 	cors: {
-		credentials: true,
-		origin: 'http://localhost:3000',
+		origin: '*',
 	},
 	transports: ['websocket'],
 	allowUpgrades: false,
