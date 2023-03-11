@@ -13,6 +13,7 @@ dotenv.config();
 const app = express();
 app.use(
 	cors({
+		credentials: true,
 		origin: 'http://localhost:3000',
 	})
 );
@@ -30,6 +31,7 @@ const server = http.createServer(app); // https server
 const { Server } = require('socket.io');
 const io = new Server(server, {
 	cors: {
+		credentials: true,
 		origin: 'http://localhost:3000',
 	},
 	transports: ['websocket'],
