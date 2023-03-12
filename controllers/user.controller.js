@@ -72,9 +72,20 @@ exports.updateNewUser = async (req, res) => {
 			{ new: true } // tra ve document da update
 		).lean();
 
+		const access_token = createAccessToken({ id: user._id });
+		const refresh_token = createRefreshToken({ id: user._id });
+		const expires_at = getTokenExp(); // gia han access_token 1 days hien tai
+
 		if (!user) return res.json({ status: 404, message: 'User is not found.' });
 
-		return res.json({ status: 200, message: 'Updated successfully', user });
+		return res.json({
+			status: 200,
+			message: 'Updated successfully',
+			access_token,
+			refresh_token,
+			expires_at,
+			user,
+		});
 	} catch (error) {
 		return res.status(500).send({ message: error.message, status: 500 });
 	}

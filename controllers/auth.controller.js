@@ -122,7 +122,8 @@ exports.generateAccessToken = async (req, res) => {
 			const refresh_token = createRefreshToken({ id: user._id });
 			const expires_at = getTokenExp(); // gia han access_token 1 days hien tai
 
-			res.json({
+			return res.json({
+				status: 200,
 				access_token,
 				refresh_token,
 				expires_at,
