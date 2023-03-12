@@ -1,7 +1,13 @@
 const User = require('../models').users;
 const Post = require('../models').posts;
 const mongoose = require('mongoose');
-const { handlePassword, getUserId } = require('../helpers');
+const {
+	handlePassword,
+	getUserId,
+	createAccessToken,
+	createRefreshToken,
+	getTokenExp,
+} = require('../helpers');
 
 // Get random friend
 exports.getFriend = async (req, res) => {
